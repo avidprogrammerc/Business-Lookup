@@ -1,5 +1,10 @@
 package main.model;
 
+/**
+ * This class wraps the Yelp business result into an object
+ * @author Chris Conley
+ *
+ */
 public class Business {
 	
 	private String name;
