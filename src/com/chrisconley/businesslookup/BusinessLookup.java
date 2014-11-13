@@ -1,4 +1,4 @@
-package com.chrisconely.businesslookup;
+package com.chrisconley.businesslookup;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;

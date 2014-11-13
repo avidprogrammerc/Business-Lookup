@@ -119,7 +119,7 @@ public class YelpAPI {
    * @param yelpApi <tt>YelpAPI</tt> service instance
    * @param yelpApiCli <tt>YelpAPICLI</tt> command line arguments
    */
-  public static JSONArray queryAPI(YelpAPI yelpApi, com.chrisconely.businesslookup.BusinessLookup.YelpAPICLI yelpApiCli) {
+  public static JSONArray queryAPI(YelpAPI yelpApi, com.chrisconley.businesslookup.BusinessLookup.YelpAPICLI yelpApiCli) {
     String searchResponseJSON =
         yelpApi.searchForBusinessesByLocation(yelpApiCli.term, yelpApiCli.location);
 
