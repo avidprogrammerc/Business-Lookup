@@ -2,8 +2,8 @@ package com.chrisconley.businesslookup;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
+import org.json.simple.parser.ParseException;
 
-import main.data_structures.LinkedList;
 import main.model.Business;
 import main.yelp_api.YelpAPI;
 
@@ -17,11 +17,12 @@ public class BusinessLookup {
 
 		@Parameter(names = { "-l", "--location" }, description = "Location to be Queried")
 		public String location = YelpAPI.DEFAULT_LOCATION;
+		
+		@Parameter(names = { "-n", "--limit" }, description = "Number of Businesses to be Queried")
+		public int number = YelpAPI.DEFAULT_LIMIT;
 	}
 
-	public static void main(String[] args) {
-		LinkedList<Business> list = new LinkedList<Business>();
-		
+	public static void main(String[] args) throws ParseException {
 		YelpAPICLI yelpApiCli = new YelpAPICLI();
 		new JCommander(yelpApiCli, args);
 
@@ -32,13 +33,11 @@ public class BusinessLookup {
 
 		for (int i = 0; i < businesses.size(); i++) {
 			JSONObject business = (JSONObject) businesses.get(i);
-
-			Business bus = new Business(business.get("name").toString(),
-					business.get("id").toString());
+			String id = business.get("id").toString();
 			
-			list.insertAtEnd(bus);
+			Business bus = new Business(yelpApi.searchByBusinessId(id));
+			System.out.println("========== Business #" + (i+1) + " ==========");
+			System.out.println(bus);
 		}
-		
-		list.traverse();
 	}
 }
