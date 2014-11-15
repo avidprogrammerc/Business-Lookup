@@ -1,7 +1,5 @@
 package main.model;
 
-import java.util.NoSuchElementException;
-
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
@@ -24,7 +22,7 @@ public class Business {
 		if (jsonObject.get("name") != null) {
 			return jsonObject.get("name").toString();
 		} else {
-			throw new NoSuchElementException("This business does not have a name.");
+			return ("This business does not have a name.");
 		}
 	}
 	
@@ -32,7 +30,7 @@ public class Business {
 		if (jsonObject.get("image_url") != null) {
 			return jsonObject.get("image_url").toString();
 		} else {
-			throw new NoSuchElementException("This business does not have an image url.");
+			return ("This business does not have an image url.");
 		}
 	}
 	
