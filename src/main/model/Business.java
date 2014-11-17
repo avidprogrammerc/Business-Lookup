@@ -22,7 +22,7 @@ public class Business {
 		if (jsonObject.get("name") != null) {
 			return jsonObject.get("name").toString();
 		} else {
-			return ("This business does not have a name.");
+			return null;
 		}
 	}
 	
@@ -30,7 +30,7 @@ public class Business {
 		if (jsonObject.get("image_url") != null) {
 			return jsonObject.get("image_url").toString();
 		} else {
-			return ("This business does not have an image url.");
+			return null;
 		}
 	}
 	
