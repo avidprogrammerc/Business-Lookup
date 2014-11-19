@@ -11,10 +11,28 @@ public class BusinessTest extends TestCase {
 
 	public void setUp() throws ParseException {
 		jsonData = "{"
+				 +   "\"id\": \"dummy_business\","
+				 +   "\"is_claimed\": \"true\","
+				 +   "\"is_closed\": \"true\","
 				 +   "\"name\": \"Dummy business\","
-				 +   "\"image_url\": \"http://csconley.com\""
+				 +   "\"image_url\": \"http://csconley.com/headshot.jpg\""
+				 +   "\"url\": \"http://csconley.com\""
+				 +   "\"mobile_url\": \"http://mobile.csconley.com\""
+				 +   "\"display_phone\": \"+1-800-999-9999\""
 				 + "}";
 		business = new Business(jsonData);
+	}
+	
+	public void testGetId() {
+		assertEquals("dummy_business", business.getId());
+	}
+	
+	public void testGetIsClaimed() {
+		assertTrue(business.getIsClaimed());
+	}
+	
+	public void testGetIsClosed() {
+		assertTrue(business.getIsClosed());
 	}
 
 	public void testGetName() {
@@ -22,6 +40,18 @@ public class BusinessTest extends TestCase {
 	}
 	
 	public void testGetImageURL() {
-		assertEquals("http://csconley.com", business.getImageURL());
+		assertEquals("http://csconley.com/headshot.jpg", business.getImageURL());
+	}
+	
+	public void testGetURL() {
+		assertEquals("http://csconley.com", business.getURL());
+	}
+	
+	public void testGetMobileURL() {
+		assertEquals("http://mobile.csconley.com", business.getMobileURL());
+	}
+	
+	public void testGetPhoneNumber() {
+		assertEquals("+1-800-999-9999", business.getPhoneNumber());
 	}
 }
