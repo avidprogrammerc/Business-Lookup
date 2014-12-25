@@ -89,7 +89,13 @@ public class BusinessLookupGUI extends Application {
 			@Override
 			public void handle(ActionEvent arg0) {
 				list.next();
-				Image temp = new Image(list.getCurrentElement().getImageURL());
+				Image temp = null;
+				String imgUrl = list.getCurrentElement().getImageURL();
+				if (imgUrl != null) {
+					temp = new Image(imgUrl);
+				} else {
+					temp = new Image("file:res/small-business-icon.jpg");
+				}
 				imgV.setImage(temp);
 				name.setText(list.getCurrentElement().getName());
 			}
@@ -99,7 +105,13 @@ public class BusinessLookupGUI extends Application {
 			@Override
 			public void handle(ActionEvent arg0) {
 				list.previous();
-				Image temp = new Image(list.getCurrentElement().getImageURL());
+				Image temp = null;
+				String imgUrl = list.getCurrentElement().getImageURL();
+				if (imgUrl != null) {
+					temp = new Image(imgUrl);
+				} else {
+					temp = new Image("file:res/small-business-icon.jpg");
+				}
 				imgV.setImage(temp);
 				name.setText(list.getCurrentElement().getName());
 			}
