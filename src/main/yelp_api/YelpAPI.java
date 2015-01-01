@@ -29,9 +29,9 @@ import com.beust.jcommander.Parameter;
 public class YelpAPI {
 
 	public static final String API_HOST = "api.yelp.com";
-	public static final String DEFAULT_TERM = "dinner";
+	public static final String DEFAULT_TERM = "Hotels";
 	public static final String DEFAULT_LOCATION = "Blacksburg, VA";
-	public static final int DEFAULT_LIMIT = 5;
+	public static final int DEFAULT_LIMIT = 20;
 	public static final String SEARCH_PATH = "/v2/search";
 	public static final String BUSINESS_PATH = "/v2/business";
 
@@ -132,6 +132,48 @@ public class YelpAPI {
 		return response.getBody();
 	}
 
+	/**
+	 * Queries the Search API based on the command line arguments and takes the
+	 * first result to query the Business API.
+	 * 
+	 * @param yelpApi
+	 *            <tt>YelpAPI</tt> service instance
+	 * @param yelpApiCli
+	 *            <tt>YelpAPICLI</tt> command line arguments
+	 */
+	public static JSONArray queryAPI(YelpAPI yelpApi,
+			main.view.BusinessLookupGUI.YelpAPICLI yelpApiCli) {
+		String searchResponseJSON = yelpApi.searchForBusinessesByLocation(
+				yelpApiCli.term, yelpApiCli.location, yelpApiCli.number);
+
+		JSONParser parser = new JSONParser();
+		JSONObject response = null;
+		try {
+			response = (JSONObject) parser.parse(searchResponseJSON);
+		} catch (ParseException pe) {
+			System.out.println("Error: could not parse JSON response:");
+			System.out.println(searchResponseJSON);
+			System.exit(1);
+		}
+
+		JSONArray businesses = (JSONArray) response.get("businesses");
+
+		return businesses;
+
+		// JSONObject firstBusiness = (JSONObject) businesses.get(0);
+		// String firstBusinessID = firstBusiness.get("id").toString();
+		// System.out.println(String.format(
+		// "%s businesses found, querying business info for the top result \"%s\" ...",
+		// businesses.size(), firstBusinessID));
+		//
+		// // Select the first business and display business details
+		// String businessResponseJSON =
+		// yelpApi.searchByBusinessId(firstBusinessID.toString());
+		// System.out.println(String.format("Result for business \"%s\" found:",
+		// firstBusinessID));
+		// System.out.println(businessResponseJSON);
+	}
+	
 	/**
 	 * Queries the Search API based on the command line arguments and takes the
 	 * first result to query the Business API.
