@@ -1,5 +1,7 @@
 package test.model;
 
+import java.util.ArrayList;
+
 import org.json.simple.parser.ParseException;
 
 import main.model.Business;
@@ -11,15 +13,25 @@ public class BusinessTest extends TestCase {
 
 	public void setUp() throws ParseException {
 		jsonData = "{"
-				 +   "\"id\": \"dummy_business\","
-				 +   "\"is_claimed\": \"true\","
-				 +   "\"is_closed\": \"true\","
-				 +   "\"name\": \"Dummy business\","
-				 +   "\"image_url\": \"http://csconley.com/headshot.jpg\","
-				 +   "\"url\": \"http://csconley.com\","
-				 +   "\"mobile_url\": \"http://mobile.csconley.com\","
-				 +   "\"display_phone\": \"+1-800-999-9999\","
-				 +   "\"review_count\": \"20\","
+				 +   "\"id\": \"dummy_business\""
+				 +   "\"is_claimed\": \"true\""
+				 +   "\"is_closed\": \"true\""
+				 +   "\"name\": \"Dummy business\""
+				 +   "\"image_url\": \"http://csconley.com/headshot.jpg\""
+				 +   "\"url\": \"http://csconley.com\""
+				 +   "\"mobile_url\": \"http://mobile.csconley.com\""
+				 +   "\"display_phone\": \"+1-800-999-9999\""
+				 +   "\"review_count\": \"20\""
+				 +   "\"categories\": ["
+				 +      "["
+				 +         "\"Web\","
+				 +         "\"Internet\""
+				 +      "],"
+				 +      "["
+				 +         "\"App\","
+				 +         "\"Application\""
+				 +      "]"
+				 +   "]"
 				 +   "\"rating\": \"3.14\","
 				 +   "\"snippet_text\": \"Text about the business will be here.\""
 				 + "}";
@@ -60,6 +72,13 @@ public class BusinessTest extends TestCase {
 	
 	public void testGetReviewCount() {
 		assertEquals(20, business.getReviewCount());
+	}
+	
+	public void testGetCategories() {
+		ArrayList<String> mock = new ArrayList<String>();
+		mock.add("Web");
+		mock.add("App");
+		assertEquals(mock, business.getCategories());
 	}
 	
 	public void testGetRating() {
