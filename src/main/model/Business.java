@@ -133,7 +133,6 @@ public class Business {
 				"phone number: " + getPhoneNumber() + "\n" +
 				"review count: " + getReviewCount() + "\n" +
 				"categories: " + getCategories() + "\n" +
-				"number of reviews: " + getReviewCount() + "\n" +
 				"rating: " + getRating() + "\n" +
 				"snippet text: " + getSnippetText());
 	}
