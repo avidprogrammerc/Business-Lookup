@@ -15,10 +15,13 @@ public class BusinessTest extends TestCase {
 				 +   "\"is_claimed\": \"true\","
 				 +   "\"is_closed\": \"true\","
 				 +   "\"name\": \"Dummy business\","
-				 +   "\"image_url\": \"http://csconley.com/headshot.jpg\""
-				 +   "\"url\": \"http://csconley.com\""
-				 +   "\"mobile_url\": \"http://mobile.csconley.com\""
-				 +   "\"display_phone\": \"+1-800-999-9999\""
+				 +   "\"image_url\": \"http://csconley.com/headshot.jpg\","
+				 +   "\"url\": \"http://csconley.com\","
+				 +   "\"mobile_url\": \"http://mobile.csconley.com\","
+				 +   "\"display_phone\": \"+1-800-999-9999\","
+				 +   "\"review_count\": \"20\","
+				 +   "\"rating\": \"3.14\","
+				 +   "\"snippet_text\": \"Text about the business will be here.\""
 				 + "}";
 		business = new Business(jsonData);
 	}
@@ -53,5 +56,17 @@ public class BusinessTest extends TestCase {
 	
 	public void testGetPhoneNumber() {
 		assertEquals("+1-800-999-9999", business.getPhoneNumber());
+	}
+	
+	public void testGetReviewCount() {
+		assertEquals(20, business.getReviewCount());
+	}
+	
+	public void testGetRating() {
+		assertEquals(3.14, business.getRating(), 0.00000001);
+	}
+	
+	public void testGetSnippetTExt() {
+		assertEquals("Text about the business will be here.", business.getSnippetText());
 	}
 }
