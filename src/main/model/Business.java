@@ -1,5 +1,7 @@
 package main.model;
 
+import java.util.ArrayList;
+
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
@@ -82,6 +84,44 @@ public class Business {
 		}
 	}
 	
+	public ArrayList<String> getCategories() {
+		if (jsonObject.get("categories") != null) {
+			ArrayList<String> retVal = new ArrayList<String>();
+			String json = jsonObject.get("categories").toString();
+			String[] vals = json.split(",");
+			for (int i = 0; i < vals.length; i+=2) {
+				retVal.add(vals[i].replaceAll("[^a-zA-Z]", ""));
+			}
+			return retVal;
+		} else {
+			return null;
+		}
+	}
+	
+	public int getReviewCount() {
+		if (jsonObject.get("review_count") != null) {
+			return Integer.parseInt(jsonObject.get("review_count").toString());
+		} else {
+			return -1;
+		}
+	}
+	
+	public double getRating() {
+		if (jsonObject.get("rating") != null) {
+			return Double.parseDouble(jsonObject.get("rating").toString());
+		} else {
+			return -1;
+		}
+	}
+	
+	public String getSnippetText() {
+		if (jsonObject.get("snippet_text") != null) {
+			return jsonObject.get("snippet_text").toString();
+		} else {
+			return null;
+		}
+	}
+	
 	public String toString() {
 		return ("id: " + getId() + "\n" +
 				"is_claimed: " + getIsClaimed() + "\n" +
@@ -90,6 +130,11 @@ public class Business {
 				"image URL: " + getImageURL() + "\n" +
 				"url: " + getURL() + "\n" +
 				"mobile_url: " + getMobileURL() + "\n" +
-				"phone number: " + getPhoneNumber());
+				"phone number: " + getPhoneNumber() + "\n" +
+				"review count: " + getReviewCount() + "\n" +
+				"categories: " + getCategories() + "\n" +
+				"number of reviews: " + getReviewCount() + "\n" +
+				"rating: " + getRating() + "\n" +
+				"snippet text: " + getSnippetText());
 	}
 }
